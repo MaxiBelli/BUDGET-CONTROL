@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
 import Modal from "./components/Modal";
+
 import NewExpenseIcon from "./img/new-expense.svg";
 
 function App() {
@@ -14,13 +16,20 @@ function App() {
 
   const handleNewExpense = () => {
     setModal(true);
-
-    setTimeout(() => setAnimateModal(true));
+    setTimeout(() => {
+      setAnimateModal(true);
+    }, 500);
   };
 
   const saveExpense = (expense) => {
-    console.log(expense);
+    const newExpense = { ...expense, id: uuidv4() };
+    setExpenses([...expenses, newExpense]);
+    setModal(true);
+    setTimeout(() => {
+      setAnimateModal(true);
+    }, 500);
   };
+
 
   return (
     <div>
