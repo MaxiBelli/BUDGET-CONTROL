@@ -8,9 +8,12 @@ function App() {
   const [isValidBudget, setIsValidBudget] = useState(false);
 
   const [modal, setModal] = useState(false);
+  const [animateModal, setAnimateModal] = useState(false);
 
   const handleNewExpense = () => {
     setModal(true);
+
+    setTimeout(() => setAnimateModal(true));
   };
 
   return (
@@ -31,7 +34,13 @@ function App() {
           />
         </div>
       )}
-      {modal && <Modal setModal={setModal} />}
+      {modal && (
+        <Modal
+          setModal={setModal}
+          animateModal={animateModal}
+          setAnimateModal={setAnimateModal}
+        />
+      )}
     </div>
   );
 }
