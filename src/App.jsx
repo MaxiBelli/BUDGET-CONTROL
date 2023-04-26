@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
+import ExpenseList from './components/ExpenseList'
 import Modal from "./components/Modal";
 
 import NewExpenseIcon from "./img/new-expense.svg";
@@ -30,7 +31,6 @@ function App() {
     }, 500);
   };
 
-
   return (
     <div>
       {" "}
@@ -41,13 +41,27 @@ function App() {
         setIsValidBudget={setIsValidBudget}
       />{" "}
       {isValidBudget && (
-        <div className="new-expense">
-          <img
-            src={NewExpenseIcon}
-            alt="new expense icon"
-            onClick={handleNewExpense}
-          />
-        </div>
+        <>
+          <main>
+           
+            <ExpenseList/>
+          </main>
+          <div className="new-expense">
+            <img
+              src={NewExpenseIcon}
+              alt="new expense icon"
+              onClick={handleNewExpense}
+            />
+          </div>
+
+          <div className="new-expense">
+            <img
+              src={NewExpenseIcon}
+              alt="new expense icon"
+              onClick={handleNewExpense}
+            />
+          </div>
+        </>
       )}
       {modal && (
         <Modal
