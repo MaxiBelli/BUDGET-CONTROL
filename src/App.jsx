@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
-import ExpenseList from './components/ExpenseList'
+import ExpenseList from "./components/ExpenseList";
 import Modal from "./components/Modal";
-
+import { generateId } from './helpers'
 import NewExpenseIcon from "./img/new-expense.svg";
 
 function App() {
@@ -23,8 +23,9 @@ function App() {
   };
 
   const saveExpense = (expense) => {
-    const newExpense = { ...expense, id: uuidv4() };
-    setExpenses([...expenses, newExpense]);
+    expense.id = generateId();
+    expense.date = Date.now();
+    setExpenses([...expenses, expense]);
     setModal(true);
     setTimeout(() => {
       setAnimateModal(true);
@@ -32,7 +33,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className={modal ? "fix" : ""}>
       {" "}
       <Header
         budget={budget}
@@ -43,8 +44,7 @@ function App() {
       {isValidBudget && (
         <>
           <main>
-           
-            <ExpenseList/>
+            <ExpenseList />
           </main>
           <div className="new-expense">
             <img
