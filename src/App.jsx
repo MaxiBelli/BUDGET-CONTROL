@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+import { useEffect, useState } from 'react'
 import Header from "./components/Header";
 import ExpenseList from "./components/ExpenseList";
 import Modal from "./components/Modal";
@@ -7,13 +6,26 @@ import { generateId } from "./helpers";
 import NewExpenseIcon from "./img/new-expense.svg";
 
 function App() {
+
+  const [expenses, setExpenses] = useState([]);
+
   const [budget, setBudget] = useState(0);
   const [isValidBudget, setIsValidBudget] = useState(false);
 
   const [modal, setModal] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
 
-  const [expenses, setExpenses] = useState([]);
+  const [expenseEdit, setExpenseEdit] = useState([])
+
+
+  useEffect(() => {
+        if (Object.keys(expenseEdit).length) {
+          setModal(true)
+          setTimeout(() => {
+            setAnimateModal(true)
+          }, 500)
+        }
+      }, [expenseEdit])
 
   const handleNewExpense = () => {
     setModal(true);
@@ -45,7 +57,7 @@ function App() {
       {isValidBudget && (
         <>
           <main>
-            <ExpenseList expenses={expenses} />
+            <ExpenseList expenses={expenses} setExpenseToEdit={setExpenseToEdit} />
           </main>
           <div className="new-expense">
             <img
