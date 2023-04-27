@@ -1,15 +1,35 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Message from "./Message";
 import CloseBtn from "../img/close.svg";
 
-const Modal = ({ setModal, animateModal, setAnimateModal , saveExpense }) => {
+const Modal = ({
+  setModal,
+  animateModal,
+  setAnimateModal,
+  saveExpense,
+  editExpense,
+  setEditExpense,
+}) => {
   const [message, setMessage] = useState("");
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
+  const [date, setDate] = useState("");
+  const [id, setId] = useState("");
+
+  useEffect(() => {
+    if (editExpense && Object.keys(editExpense).length > 0) {
+      setName(editExpense.name);
+      setAmount(editExpense.amount);
+      setCategory(editExpense.category);
+      setId(editExpense.id);
+      setDate(editExpense.date);
+    }
+  }, []);
 
   const hideModal = () => {
     setAnimateModal(false);
+    setEditExpense({})
     setTimeout(() => {
       setModal(false);
     }, 500);
@@ -20,14 +40,12 @@ const Modal = ({ setModal, animateModal, setAnimateModal , saveExpense }) => {
 
     if ([name, amount, category].includes("")) {
       setMessage("All fields are required");
-
       setTimeout(() => {
         setMessage("");
       }, 3000);
       return;
     }
-
-    saveExpense({ name, amount, category });
+    saveExpense({ name, amount, category, id, date });
   };
 
   return (
@@ -40,7 +58,7 @@ const Modal = ({ setModal, animateModal, setAnimateModal , saveExpense }) => {
         onSubmit={handleSubmit}
         className={`form ${animateModal ? "animate" : "close"}`}
       >
-        <legend>New Expenses</legend>
+        <legend>{editExpense && editExpense.name ? "Edit Expense" : "New Expense"}</legend>
         {message && <Message type="error">{message}</Message>}
 
         <div className="field">
@@ -79,7 +97,7 @@ const Modal = ({ setModal, animateModal, setAnimateModal , saveExpense }) => {
             <option value="food">Food</option>
             <option value="home">Home</option>
             <option value="expenses">Miscellaneous Expenses</option>
-            <option value="entertainment">Entertainment</option>
+            <option value="leisure">Leisure</option>
             <option value="health">Health</option>
             <option value="subscriptions">Subscriptions</option>
           </select>
@@ -87,7 +105,7 @@ const Modal = ({ setModal, animateModal, setAnimateModal , saveExpense }) => {
 
         <input
           type="submit"
-          value={expenseToEdit.name ? "Save Changes" : "Add Expense"}
+          value={editExpense.name ? "Save Changes" : "Add Expense"}
         />
       </form>
     </div>
