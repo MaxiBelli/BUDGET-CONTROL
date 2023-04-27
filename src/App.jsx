@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
 import ExpenseList from "./components/ExpenseList";
 import Modal from "./components/Modal";
-import { generateId } from './helpers'
+import { generateId } from "./helpers";
 import NewExpenseIcon from "./img/new-expense.svg";
 
 function App() {
@@ -36,6 +36,7 @@ function App() {
     <div className={modal ? "fix" : ""}>
       {" "}
       <Header
+        expenses={expenses}
         budget={budget}
         setBudget={setBudget}
         isValidBudget={isValidBudget}
@@ -44,7 +45,7 @@ function App() {
       {isValidBudget && (
         <>
           <main>
-            <ExpenseList />
+            <ExpenseList expenses={expenses} />
           </main>
           <div className="new-expense">
             <img
