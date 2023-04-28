@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
 import Filters from './components/Filters'
-import ExpenseList from "./components/ExpenseList";
+import ListExpenses from "./components/ListExpenses";
 import Modal from "./components/Modal";
 import { generateId } from "./helpers";
 import NewExpenseIcon from "./img/new-expense.svg";
@@ -107,7 +107,7 @@ function App() {
             filter={filter}
             setFilter={setFilter}
           />
-            <ExpenseList
+            <ListExpenses
               expenses={expenses}
               setEditExpense={setEditExpense}
               deleteExpense={deleteExpense}

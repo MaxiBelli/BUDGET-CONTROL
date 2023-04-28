@@ -1,7 +1,7 @@
 import React from "react";
 import Expense from "./Expense";
 
-const ExpenseList = ({
+const ListExpenses = ({
   expenses,
   setEditExpense,
   deleteExpense,
@@ -24,7 +24,7 @@ const ExpenseList = ({
             <Expense
               key={expense.id}
               expense={expense}
-              setExpenseToEdit={setEditExpense}
+              setEditExpense={setEditExpense}
               deleteExpense={deleteExpense}
             />
           ))}
@@ -36,7 +36,7 @@ const ExpenseList = ({
             <Expense
               key={expense.id}
               expense={expense}
-              setExpenseToEdit={setExpenseToEdit}
+              setEditExpense={setEditExpense}
               deleteExpense={deleteExpense}
             />
           ))}
@@ -46,4 +46,4 @@ const ExpenseList = ({
   );
 };
 
-export default ExpenseList;
+export default ListExpenses;
