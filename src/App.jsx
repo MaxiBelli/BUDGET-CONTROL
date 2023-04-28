@@ -6,12 +6,14 @@ import { generateId } from "./helpers";
 import NewExpenseIcon from "./img/new-expense.svg";
 
 function App() {
-  
+
   const [budget, setBudget] = useState(
     Number(localStorage.getItem("budget") ?? 0)
   );
 
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState(
+    localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : []
+  )
 
   const [isValidBudget, setIsValidBudget] = useState(false);
 
@@ -30,6 +32,10 @@ function App() {
       setIsValidBudget(true);
     }
   }, []);
+
+  useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses) ?? [])
+  }, [expenses])
 
   useEffect(() => {
     if (Object.keys(editExpense).length > 0) {
