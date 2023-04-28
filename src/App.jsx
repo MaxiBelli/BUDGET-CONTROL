@@ -94,6 +94,7 @@ function App() {
       {" "}
       <Header
         expenses={expenses}
+        setExpenses={setExpenses}
         budget={budget}
         setBudget={setBudget}
         isValidBudget={isValidBudget}
