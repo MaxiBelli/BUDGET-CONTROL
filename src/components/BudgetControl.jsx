@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
+import swal from "sweetalert2";
 import "react-circular-progressbar/dist/styles.css";
 
 const BudgetControl = ({
@@ -37,15 +38,28 @@ const BudgetControl = ({
   };
 
   const handleResetApp = () => {
-    const result = window.confirm(
-      "Do you want to reset the budget and expenses?"
-    );
-
-    if (result) {
-      setExpenses([]);
-      setBudget(0);
-      setIsValidBudget(false);
-    }
+    swal
+      .fire({
+        title: "Are you sure you want to reset the budget and expenses?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, reset it!",
+        cancelButtonText: "Cancel",
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          setExpenses([]);
+          setBudget(0);
+          setIsValidBudget(false);
+          swal.fire(
+            "Reset!",
+            "Your budget and expenses have been reset.",
+            "success"
+          );
+        }
+      });
   };
 
   return (
