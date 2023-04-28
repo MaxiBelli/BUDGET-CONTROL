@@ -6,15 +6,30 @@ import { generateId } from "./helpers";
 import NewExpenseIcon from "./img/new-expense.svg";
 
 function App() {
+  
+  const [budget, setBudget] = useState(
+    Number(localStorage.getItem("budget") ?? 0)
+  );
+
   const [expenses, setExpenses] = useState([]);
 
-  const [budget, setBudget] = useState(0);
   const [isValidBudget, setIsValidBudget] = useState(false);
 
   const [modal, setModal] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
 
   const [editExpense, setEditExpense] = useState([]);
+
+  useEffect(() => {
+    localStorage.setItem("budget", budget) ?? 0;
+  }, [budget]);
+
+  useEffect(() => {
+    const budgetLS = Number(localStorage.getItem("budget"));
+    if (budgetLS > 0) {
+      setIsValidBudget(true);
+    }
+  }, []);
 
   useEffect(() => {
     if (Object.keys(editExpense).length > 0) {
@@ -46,7 +61,6 @@ function App() {
       expense.date = Date.now();
       setExpenses([...expenses, expense]);
     }
-
     setAnimateModal(false);
     setTimeout(() => {
       setModal(false);
