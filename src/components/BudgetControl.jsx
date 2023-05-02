@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import swal from "sweetalert2";
 import "react-circular-progressbar/dist/styles.css";
+import { formatAmount } from "../helpers";
 
 const BudgetControl = ({
   expenses,
@@ -10,7 +11,7 @@ const BudgetControl = ({
   setBudget,
   setIsValidBudget,
 }) => {
-  const [percentage, setPercentage] = useState(10);
+  const [percentage, setPercentage] = useState(0);
   const [available, setAvailable] = useState(0);
   const [spent, setSpent] = useState(0);
 
@@ -30,13 +31,6 @@ const BudgetControl = ({
     }, 1500);
   }, [expenses]);
 
-  const formatAmount = (amount) => {
-    return amount.toLocaleString("en-US", {
-      style: "currency",
-      currency: "USD",
-    });
-  };
-
   const handleResetApp = () => {
     swal
       .fire({
@@ -47,17 +41,23 @@ const BudgetControl = ({
         cancelButtonColor: "#d33",
         confirmButtonText: "Yes, reset it!",
         cancelButtonText: "Cancel",
+        customClass: {
+          container: "my-swal",
+        },
       })
       .then((result) => {
         if (result.isConfirmed) {
-          setExpenses([]);
           setBudget(0);
+          setExpenses([]);
           setIsValidBudget(false);
-          swal.fire(
-            "Reset!",
-            "Your budget and expenses have been reset.",
-            "success"
-          );
+          swal.fire({
+            title: "Reset!",
+            text: "Your budget and expenses have been reset.",
+            icon: "success",
+            customClass: {
+              container: "my-swal",
+            },
+          });
         }
       });
   };

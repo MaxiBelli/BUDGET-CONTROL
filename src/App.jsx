@@ -1,20 +1,18 @@
 import { useEffect, useState } from "react";
 import Header from "./components/Header";
-import Filters from './components/Filters'
+import Filters from "./components/Filters";
 import ListExpenses from "./components/ListExpenses";
 import Modal from "./components/Modal";
 import { generateId } from "./helpers";
+
 import NewExpenseIcon from "./img/new-expense.svg";
 
 function App() {
-
-  const [budget, setBudget] = useState(
-    Number(localStorage.getItem("budget") ?? 0)
+  const [budget, setBudget] = useState(Number(localStorage.getItem("budget") ?? 0));
+  const [expenses, setExpenses] = useState(localStorage.getItem("expenses")
+      ? JSON.parse(localStorage.getItem("expenses"))
+      : []
   );
-
-  const [expenses, setExpenses] = useState(
-    localStorage.getItem('expenses') ? JSON.parse(localStorage.getItem('expenses')) : []
-  )
 
   const [isValidBudget, setIsValidBudget] = useState(false);
 
@@ -23,8 +21,8 @@ function App() {
 
   const [editExpense, setEditExpense] = useState([]);
 
-  const [filter, setFilter] = useState('')
-  const [filteredExpenses, setFilteredExpenses] = useState([])
+  const [filter, setFilter] = useState("");
+  const [filteredExpenses, setFilteredExpenses] = useState([]);
 
   useEffect(() => {
     localStorage.setItem("budget", budget) ?? 0;
@@ -38,8 +36,8 @@ function App() {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('expenses', JSON.stringify(expenses) ?? [])
-  }, [expenses])
+    localStorage.setItem("expenses", JSON.stringify(expenses) ?? []);
+  }, [expenses]);
 
   useEffect(() => {
     if (Object.keys(editExpense).length > 0) {
@@ -52,11 +50,13 @@ function App() {
   }, [editExpense]);
 
   useEffect(() => {
-    if(filter){
-      const filteredExpenses = expenses.filter(expense => expense.category === filter)
-      setFilteredExpenses(filteredExpenses)
+    if (filter) {
+      const filteredExpenses = expenses.filter(
+        (expense) => expense.category === filter
+      );
+      setFilteredExpenses(filteredExpenses);
     }
-  }, [filter])
+  }, [filter]);
 
   const handleNewExpense = () => {
     setModal(true);
@@ -103,10 +103,7 @@ function App() {
       {isValidBudget && (
         <>
           <main>
-          <Filters
-            filter={filter}
-            setFilter={setFilter}
-          />
+            <Filters filter={filter} setFilter={setFilter} />
             <ListExpenses
               expenses={expenses}
               setEditExpense={setEditExpense}
@@ -115,14 +112,6 @@ function App() {
               filteredExpenses={filteredExpenses}
             />
           </main>
-          <div className="new-expense">
-            <img
-              src={NewExpenseIcon}
-              alt="new expense icon"
-              onClick={handleNewExpense}
-            />
-          </div>
-
           <div className="new-expense">
             <img
               src={NewExpenseIcon}

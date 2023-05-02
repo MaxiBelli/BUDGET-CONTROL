@@ -1,7 +1,12 @@
 import { useState } from "react";
 import Message from "./Message";
 
-const NewBudget = ({ budget, setBudget, setIsValidBudget }) => {
+const NewBudget = ({
+  budget, 
+  setBudget, 
+  setIsValidBudget 
+}) => {
+
   const [message, setMessage] = useState();
 
   const handleBudget = (e) => {
@@ -15,6 +20,7 @@ const NewBudget = ({ budget, setBudget, setIsValidBudget }) => {
   };
 
   return (
+
     <div className="budget-container container shadow">
       <form onSubmit={handleBudget} action="" className="form">
         <div className="field">

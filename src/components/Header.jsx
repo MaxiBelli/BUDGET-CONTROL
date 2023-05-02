@@ -10,6 +10,8 @@ const Header = ({
   isValidBudget,
   setIsValidBudget,
 }) => {
+
+  
   return (
     <header>
       <h1>Expense Planner</h1>

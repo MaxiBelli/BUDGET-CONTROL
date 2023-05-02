@@ -8,11 +8,10 @@ import {
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 import { formatDate } from "../helpers";
-
 import SavingIcon from "../img/saving_icon.svg";
 import HomeIcon from "../img/home_icon.svg";
 import FoodIcon from "../img/food_icon.svg";
-import ExpensesIcon from "../img/expenses_icon.svg";
+import MiscellaneousIcon from "../img/miscellaneous_icon.svg";
 import LeisureIcon from "../img/leisure_icon.svg";
 import HealthIcon from "../img/health_icon.svg";
 import SubscriptionsIcon from "../img/subscriptions_icon.svg";
@@ -21,24 +20,31 @@ const iconDictionary = {
   savings: SavingIcon,
   food: FoodIcon,
   home: HomeIcon,
-  expenses: ExpensesIcon,
+  miscellaneous: MiscellaneousIcon,
   leisure: LeisureIcon,
   health: HealthIcon,
   subscriptions: SubscriptionsIcon,
 };
 
-export const Expense = ({ expense, setExpenseEdit, deleteExpense }) => {
+export const Expense = ({ 
+    expense, 
+    setEditExpense, 
+    deleteExpense 
+}) => {
+    
   const { category, name, amount, id, date } = expense;
 
   const leadingActions = () => (
     <LeadingActions>
-      <SwipeAction onClick={() => setExpenseEdit(expense)}>Edit</SwipeAction>
+      <SwipeAction onClick={() => setEditExpense(expense)}>EDIT</SwipeAction>
     </LeadingActions>
   );
 
   const trailingActions = () => (
     <TrailingActions>
-      <SwipeAction onClick={() => deleteExpense(id)} destructive={true}>Delete</SwipeAction>
+      <SwipeAction onClick={() => deleteExpense(id)} destructive={true}>
+        DELETE
+      </SwipeAction>
     </TrailingActions>
   );
 

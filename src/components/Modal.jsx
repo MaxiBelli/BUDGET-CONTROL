@@ -10,6 +10,7 @@ const Modal = ({
   editExpense,
   setEditExpense,
 }) => {
+  
   const [name, setName] = useState("");
   const [amount, setAmount] = useState("");
   const [category, setCategory] = useState("");
@@ -101,12 +102,12 @@ const Modal = ({
             onChange={(e) => setCategory(e.target.value)}
           >
             <option value="">-- Select --</option>
-            <option value="saving">Saving</option>
             <option value="food">Food</option>
-            <option value="home">Home</option>
-            <option value="miscellaneous">Miscellaneous Expenses</option>
-            <option value="leisure">Leisure</option>
             <option value="health">Health</option>
+            <option value="home">Home</option>
+            <option value="leisure">Leisure</option>
+            <option value="miscellaneous">Miscellaneous Expenses</option>
+            <option value="saving">Saving</option>
             <option value="subscriptions">Subscriptions</option>
           </select>
         </div>

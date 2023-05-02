@@ -9,7 +9,6 @@ const ListExpenses = ({
   filteredExpenses,
 }) => {
 
-
   return (
 
     <div className="expense-list container">

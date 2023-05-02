@@ -8,3 +8,10 @@ export const formatDate = date =>
     month: "long",
     day: "2-digit",
   });
+
+ export const formatAmount = amount => {
+    return amount.toLocaleString("en-US", {
+      style: "currency",
+      currency: "USD",
+    });
+  };
