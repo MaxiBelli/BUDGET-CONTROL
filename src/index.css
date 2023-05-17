@@ -440,60 +440,72 @@ body .modal {
     font-size: 2.4rem;
     text-align: right;
 }
-.my-swal .swal2-confirm, .my-swal .swal2-cancel {
+
+.my-swal .swal2-confirm,
+.my-swal .swal2-cancel {
     padding: 10px 20px;
     font-size: 1.5rem;
-  }
+}
 
-  @media (min-width: 768px) {
+@media (min-width: 768px) {
     .form {
-    padding: 5rem 0;
-    width: 60rem;
+        padding: 5rem 0;
+        width: 60rem;
     }
+
     .form input[type="submit"] {
-    display: block;
-    padding: 1rem 5rem;
+        display: block;
+        padding: 1rem 5rem;
     }
+
     .two-columns {
-    flex-direction: row;
-    align-items: center;
-    gap: 4rem;
+        flex-direction: row;
+        align-items: center;
+        gap: 4rem;
     }
-    .two-columns > div {
-    width: 50%;
+
+    .two-columns>div {
+        width: 50%;
     }
+
     .two-columns :first-child {
-    margin-bottom: 0;
+        margin-bottom: 0;
     }
-    }
-    
-    /* Rules for small screens */
-    @media (max-width: 767px) {
+}
+
+/* Rules for small screens */
+@media (max-width: 767px) {
     .form {
-    width: 95%;
-    margin: 0 auto;
-    padding: 10rem 0;
+        width: 95%;
+        margin: 0 auto;
+        padding: 10rem 0;
     }
+
     .form input[type="submit"] {
-    width: 100%;
+        width: 100%;
     }
+
     .budget-container {
-    margin-top: -3rem;
-    flex-direction: column-reverse;
+        margin-top: -3rem;
+        flex-direction: column-reverse;
     }
+
     .budget-container svg {
-    width: 100%;
-    margin-bottom: 2rem;
+        width: 100%;
+        margin-bottom: 2rem;
     }
-    .two-columns > div {
-    width: 100%;
-    margin-bottom: 2rem;
+
+    .two-columns>div {
+        width: 100%;
+        margin-bottom: 2rem;
     }
+
     .form input[type="text"].new-budget,
     .form input[type="number"].new-budget {
-    font-size: 2.2rem;
+        font-size: 2.2rem;
     }
+
     .budget-content p {
-    font-size: 1.4rem;
+        font-size: 1.4rem;
     }
-    }
+}
