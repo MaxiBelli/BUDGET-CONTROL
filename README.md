@@ -1,4 +1,4 @@
-# Weather App!
+# Budget Control!
 
 <table>
     <tr>
@@ -39,7 +39,7 @@
     </tr>
 </table>
 
-> Website to see the weather
+
 
 ## Built with:
 
